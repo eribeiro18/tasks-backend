@@ -23,6 +23,8 @@ public class TaskControllerTest {
 	@InjectMocks
 	private TaskController controller;
 	
+	private static final String DESCRICAO = "Descrição";
+	
 	@Test
 	public void naoDeveSalvarTarefaSemDescricao() {
 		Task todo = new Task();
@@ -37,7 +39,7 @@ public class TaskControllerTest {
 	@Test
 	public void naoDeveSalvarTarefaSemData() {
 		Task todo = new Task();
-		todo.setTask("Descrição");
+		todo.setTask(DESCRICAO);
 		try {
 			controller.save(todo);
 		} catch (ValidationException e) {
@@ -48,7 +50,7 @@ public class TaskControllerTest {
 	@Test
 	public void naoDeveSalvarTarefaSemComDataPassada() {
 		Task todo = new Task();
-		todo.setTask("Descrição");
+		todo.setTask(DESCRICAO);
 		todo.setDueDate(LocalDate.of(2010, 01, 01));
 		try {
 			controller.save(todo);
@@ -60,7 +62,7 @@ public class TaskControllerTest {
 	@Test
 	public void deveSalvarTarefaComSucesso() throws ValidationException {
 		Task todo = new Task();
-		todo.setTask("Descrição");
+		todo.setTask(DESCRICAO);
 		todo.setDueDate(LocalDate.now());
 		controller.save(todo);
 		//verifica se a chamada acima chegou no metodo save, se sim o teste deu certo 
