@@ -23,11 +23,6 @@ public class TaskControllerTest {
 	@InjectMocks
 	private TaskController controller;
 	
-//	@Before
-//	public void setup() {
-//		MockitoAnnotations.initMocks(this);
-//	}
-	
 	@Test
 	public void naoDeveSalvarTarefaSemDescricao() {
 		Task todo = new Task();
