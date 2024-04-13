@@ -21,5 +21,13 @@ pipeline {
 				}				
 			}
 		}
+		stage ('Quality Gate') {
+			step {
+			    timeout(){
+			        
+			        
+			    }
+			}
+		}
 	}
 }
