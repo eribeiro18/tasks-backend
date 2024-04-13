@@ -29,17 +29,21 @@ public class TaskController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Task> save(@RequestBody Task todo) throws ValidationException {
-		if(todo.getTask() == null || todo.getTask().equals("")) {
-			throw new ValidationException("Fill the task description");
+	public ResponseEntity<Object> save(@RequestBody Task todo) throws ValidationException {
+		try {
+			if(todo.getTask() == null || todo.getTask().equals("")) {
+				throw new ValidationException("Fill the task description");
+			}
+			if(todo.getDueDate() == null) {
+				throw new ValidationException("Fill the due date");
+			}
+			if(!DateUtils.isEqualOrFutureDate(todo.getDueDate())) {
+				throw new ValidationException("Due date must not be in past");
+			}
+			Task saved = taskRepo.save(todo);
+			return new ResponseEntity<>(saved, HttpStatus.CREATED);			
+		} catch (Exception e) {
+			return new ResponseEntity<>(e, HttpStatus.BAD_REQUEST);
 		}
-		if(todo.getDueDate() == null) {
-			throw new ValidationException("Fill the due date");
-		}
-		if(!DateUtils.isEqualOrFutureDate(todo.getDueDate())) {
-			throw new ValidationException("Due date must not be in past");
-		}
-		Task saved = taskRepo.save(todo);
-		return new ResponseEntity<>(saved, HttpStatus.CREATED);
 	}
 }
