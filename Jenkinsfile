@@ -36,8 +36,10 @@ pipeline {
 		}
 		stage ('API Test') {
 			steps {
-				git 'https://github.com/eribeiro18/tasks-api-test'
-				sh 'mvn test'
+				dir('api-test'){
+					git 'https://github.com/eribeiro18/tasks-api-test'
+					sh 'mvn test'
+				}
 			}
 		}
 	}
