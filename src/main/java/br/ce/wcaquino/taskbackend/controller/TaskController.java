@@ -30,7 +30,7 @@ public class TaskController {
 		return taskRepo.findAll();
 	}
 	
-	@DeleteMapping
+	@DeleteMapping(path = "/{id}")
 	public ResponseEntity<Object> delete(@PathVariable Long id){
 		try {
 			taskRepo.deleteById(id);
