@@ -1,17 +1,17 @@
 version: "3"
 services:
-  db:
-    container_name: pg-prod
-    image: postgres:10.23-alpine
-    networks:
-      - prod_net_back
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=PostG0B0
-      - POSTGRES_DB=tasks
-    volumes:
-      - prod_postgresql:/var/lib/postgresql
-      - prod_postgresql_data:/var/lib/postgresql/data
+#  db:
+#    container_name: pg-prod
+#    image: postgres:10.23-alpine
+#    networks:
+#      - prod_net_back
+#    environment:
+#      - POSTGRES_USER=postgres
+#      - POSTGRES_PASSWORD=PostG0B0
+#      - POSTGRES_DB=tasks
+#    volumes:
+#      - prod_postgresql:/var/lib/postgresql
+#      - prod_postgresql_data:/var/lib/postgresql/data
 
   backend:
     container_name: backend-prod
@@ -32,8 +32,8 @@ services:
       - DATABASE_USER=postgres
       - DATABASE_PASSWD=PostG0B0
       #- DATABASE_UPDATE=none
-    depends_on:
-      - db
+#    depends_on:
+#      - db
 
   frontend:
     container_name: frontend-prod
