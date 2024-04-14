@@ -74,7 +74,7 @@ public class TaskControllerTest {
 	@Test
 	public void deveDeletarTask() throws ValidationException {
 		Task todo = new Task();
-		todo.setId(1L);;
+		todo.setId(1L);
 		controller.delete(todo.getId());
 		Mockito.verify(taskRepo).deleteById(todo.getId());
 	}
