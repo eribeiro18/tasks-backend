@@ -62,6 +62,7 @@ pipeline {
 		stage ('Deploy Prod') {
 			steps {
 				dir('function-test'){
+					sh 'docker-compose down -d'
 					sh 'docker-compose build'
 					sh 'docker-compose up -d'
 				}				
