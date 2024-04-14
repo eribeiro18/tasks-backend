@@ -55,7 +55,7 @@ pipeline {
 			steps {
 				dir('function-test'){
 					git 'https://github.com/eribeiro18/tasks-functional-tests'
-					sh 'mvn clean package'
+					sh 'mvn test'
 				}				
 			}
 		}
