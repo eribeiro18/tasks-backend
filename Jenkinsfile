@@ -68,5 +68,12 @@ pipeline {
 				}				
 			}
 		}
+		stage ('Health Check') {
+			steps {
+				dir('function-test'){
+					sh 'mvn verify -Dskip.surefire.tests'
+				}				
+			}
+		}
 	}
 }
