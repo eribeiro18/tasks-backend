@@ -51,14 +51,6 @@ pipeline {
 				}				
 			}
 		}
-		stage ('Functional Text') {
-			steps {
-				dir('function-test'){
-					git 'https://github.com/eribeiro18/tasks-functional-tests'
-					sh 'mvn test'
-				}				
-			}
-		}
 		stage ('Deploy Prod') {
 			steps {
 				dir('function-test'){
