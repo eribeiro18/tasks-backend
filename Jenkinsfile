@@ -51,12 +51,28 @@ pipeline {
 				}				
 			}
 		}
+		stage ('Functional Text') {
+			steps {
+				dir('function-test'){
+					git 'https://github.com/eribeiro18/tasks-functional-tests'
+					sh 'mvn test'
+				}				
+			}
+		}
 		stage ('Deploy Prod') {
 			steps {
 				dir('function-test'){
 					sh 'docker-compose down'
 					sh 'docker-compose build'
 					sh 'docker-compose up -d'
+				}				
+			}
+		}
+		stage ('Health Check') {
+			steps {
+				sleep(8)
+				dir('function-test'){
+					sh 'mvn verify -Dskip.surefire.tests'
 				}				
 			}
 		}
